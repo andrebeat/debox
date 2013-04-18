@@ -6,7 +6,7 @@ object MyBuild extends Build {
     name := "debox",
     version := "0.1.1",
 
-    scalaVersion := "2.10.0",
+    scalaVersion := "2.10.1",
     scalaBinaryVersion := "2.10",
 
     scalacOptions ++= Seq(
@@ -20,8 +20,8 @@ object MyBuild extends Build {
     ),
 
     libraryDependencies ++= Seq(
-      "org.scalatest" % "scalatest_2.10.0" % "1.8" % "test",
-      "org.scala-lang" % "scala-reflect" % "2.10.0"
+      "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
+      "org.scala-lang" % "scala-reflect" % "2.10.1"
     )
   )
 
