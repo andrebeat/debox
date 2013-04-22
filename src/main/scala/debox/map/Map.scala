@@ -191,6 +191,21 @@ final class Map[
     loop(0, 0, length - 1)
   }
 
+  final override def equals(that: Any) = {
+    def equalsInner[A, B](m1: Map[A, B], m2: Map[A, B]) = {
+      var equals = true
+      m1.foreach { case (k, v) =>
+        equals &= m2.contains(k) && m2(k) == v
+      }
+      equals
+    }
+
+    that match {
+      case that: Map[A, B] => equalsInner(this, that) && equalsInner(that, this)
+      case _ => false
+    }
+  }
+
   final def hash(item:A, _mask:Int, _keys:Array[A], _buckets:Array[Byte]):Int = {
     @inline @tailrec
     def loop(i:Int, perturbation:Int): Int = {
@@ -207,7 +222,7 @@ final class Map[
   final def resize(): Unit1[A] = {
     val size = keys.length
     val factor = if (size < 10000) 4 else 2
-    
+
     val nextsize = size * factor
     val nextmask = nextsize - 1
     val nextkeys = new Array[A](nextsize)

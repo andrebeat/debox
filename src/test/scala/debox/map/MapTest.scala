@@ -91,4 +91,20 @@ class MapTest extends FunSuite {
 
     assert(sum == is.sum)
   }
+
+  test("equals") {
+    val m1 = Map.empty[Int, Int]
+    val m2 = Map.empty[Int, Int]
+
+    (1 to 10).foreach { i =>
+      m1.update(i, i)
+      m2.update(i, i)
+    }
+
+    assert(m1 == m2)
+
+    m1.update(11, 11)
+
+    assert(m1 != m2)
+  }
 }
